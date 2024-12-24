@@ -28,6 +28,7 @@ from routes.incidents import incidents
 from routes.units import units
 from routes.users import users
 from routes.database_admin import database_admin
+from routes.admin import admin
 from flask.cli import with_appcontext
 import click
 
@@ -51,6 +52,7 @@ login_manager.login_message_category = 'warning'
 
 # Register blueprints
 app.register_blueprint(auth)
+app.register_blueprint(admin, url_prefix='/admin')
 app.register_blueprint(profiles)
 app.register_blueprint(incidents)
 app.register_blueprint(units)
@@ -408,6 +410,14 @@ def get_zone_units(zone_id):
     except Exception as e:
         app.logger.error(f"Error fetching units for zone {zone_id}: {str(e)}")
         return jsonify({'error': 'Error fetching units'}), 500
+
+@app.context_processor
+def inject_pending_users_count():
+    if current_user.is_authenticated and current_user.role == 'Admin':
+        from models import User
+        pending_users_count = User.query.filter_by(role='Pending').count()
+        return {'pending_users_count': pending_users_count}
+    return {'pending_users_count': None}
 
 if __name__ == '__main__':
     # Create default admin user if it doesn't exist

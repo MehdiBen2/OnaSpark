@@ -304,8 +304,18 @@
                             Administration
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ url_for('users.manage_users') }}">Utilisateurs</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('database_admin.database_overview') }}">Base de données</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('admin.pending_users') }}">
+                                <i class="fas fa-user-clock"></i> Demandes d'inscription
+                                {% if pending_users_count %}
+                                <span class="badge bg-primary">{{ pending_users_count }}</span>
+                                {% endif %}
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('users.manage_users') }}">
+                                <i class="fas fa-users"></i> Utilisateurs
+                            </a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('database_admin.database_overview') }}">
+                                <i class="fas fa-database"></i> Base de données
+                            </a></li>
                         </ul>
                     </li>
                     {% endif %}

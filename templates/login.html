@@ -56,6 +56,13 @@
             padding: 3rem;
         }
 
+        .form-title {
+            color: #1e3c72;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
         .form-control {
             background: rgba(255, 255, 255, 0.9);
             border: 1px solid rgba(30, 60, 114, 0.2);
@@ -69,6 +76,10 @@
             border-color: #1e3c72;
             box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.1);
             transform: translateY(-2px);
+        }
+
+        .form-control::placeholder {
+            color: #6c757d;
         }
 
         .btn-primary {
@@ -147,13 +158,6 @@
         .left-side h1, .left-side p {
             color: white;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .form-title {
-            color: #1e3c72;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 2rem;
         }
 
         .error-message {
@@ -329,9 +333,11 @@
                                         <div id="passwordError" class="error-message"></div>
                                     </div>
                                     <div id="loginError" class="alert alert-danger d-none" role="alert"></div>
-                                    <button type="submit" class="btn btn-primary w-100 mb-3">Se connecter</button>
-                                    <a href="{{ url_for('index') }}" class="btn btn-return w-100">Retour à l'accueil</a>
+                                    <button type="submit" class="btn btn-primary w-100">Se connecter</button>
                                 </form>
+                                <div class="text-center mt-3">
+                                    <a href="{{ url_for('auth.register') }}" class="text-dark text-decoration-none" style="color: dark;">Pas encore inscrit ? Créez un compte</a>
+                                </div>
                                 <script>
                                     document.getElementById('loginForm').addEventListener('submit', async function(e) {
                                         e.preventDefault();
@@ -401,6 +407,7 @@
                                         }
                                     });
                                 </script>
+                                <a href="{{ url_for('index') }}" class="btn btn-return w-100">Retour à l'accueil</a>
                             </div>
                         </div>
                     </div>
