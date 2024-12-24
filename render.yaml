@@ -13,3 +13,7 @@ services:
         value: production
       - key: SQLALCHEMY_DATABASE_URI
         value: sqlite:///instance/onaspark.db
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        sync: false  # Allow Render to set the port

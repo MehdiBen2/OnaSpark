@@ -29,7 +29,8 @@ with app.app_context():
 if __name__ == "__main__":
     # Get port from environment variable or use 5000 as default
     port = int(os.environ.get("PORT", 5000))
+    host = os.environ.get("HOST", "0.0.0.0")  # Use 0.0.0.0 to accept connections from all interfaces
     print(f"\n{'='*50}")
-    print(f"Server is running at http://localhost:{port}")
+    print(f"Server is running at http://{host}:{port}")
     print(f"{'='*50}\n")
-    serve(app, host='localhost', port=port, url_scheme='http')
+    serve(app, host=host, port=port, url_scheme='http')
