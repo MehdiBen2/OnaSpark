@@ -3,7 +3,11 @@ services:
     name: onaspark
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: waitress-serve --port=$PORT wsgi:app
+    startCommand: bash ./scripts/init.sh
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.0
+      - key: FLASK_APP
+        value: wsgi.py
+      - key: FLASK_ENV
+        value: production
