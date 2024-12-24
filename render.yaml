@@ -11,3 +11,5 @@ services:
         value: wsgi.py
       - key: FLASK_ENV
         value: production
+      - key: SQLALCHEMY_DATABASE_URI
+        value: sqlite:///instance/onaspark.db

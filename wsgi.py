@@ -5,6 +5,10 @@ import os
 # Create default admin user if it doesn't exist
 with app.app_context():
     try:
+        # Ensure database and tables exist
+        db.create_all()
+        
+        # Create admin user if it doesn't exist
         admin_user = User.query.filter_by(username='admin').first()
         if not admin_user:
             admin_user = User(
@@ -20,7 +24,7 @@ with app.app_context():
             print("Password: admin")
             print("Please change these credentials after first login.")
     except Exception as e:
-        print(f"Error creating admin user: {str(e)}")
+        print(f"Error during database initialization: {str(e)}")
 
 if __name__ == "__main__":
     # Get port from environment variable or use 5000 as default
